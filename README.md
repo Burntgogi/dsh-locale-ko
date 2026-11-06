@@ -120,7 +120,7 @@ dsh plugin --profile web remove dsh-locale-ko
 
 ## 확인한 범위
 
-Windows 11, Node.js 24, 공식 npm 패키지 0.2.2-rc.1에서 태그를 지정한 Git 설치와 번들 자동 등록, 제거를 시험했습니다. 한국어 브라우저에서 자동으로 한국어가 선택되는 것과, 패치 전후로 플러그인 화면의 이름이 영어에서 한국어로 바뀌는 것을 확인했습니다. 사전의 키와 자리표시자는 배포본 영어 원문과 대조했습니다.
+Windows 11, Node.js 24, 공식 npm 패키지 0.2.2-rc.1에서 태그를 지정한 Git 설치와 번들 자동 등록, 제거를 시험했습니다. 공개 후 `github:` 지정, HTTPS 주소, Release의 `.tgz` 주소로 명령줄 설치가 되는 것도 확인했습니다. 한국어 브라우저에서 자동으로 한국어가 선택되는 것과, 패치 전후로 플러그인 화면의 이름이 영어에서 한국어로 바뀌는 것을 확인했습니다. 사전의 키와 자리표시자는 배포본 영어 원문과 대조했습니다.
 
 데스크톱 패치는 공식 원본의 진입 파일을 해시로 확인해 복원한 입력으로 만들었고, 패치한 앱이 부팅되는 것까지 확인했습니다. 공식 원본 파일을 그대로 입력으로 쓴 경우와 데스크톱 앱 화면에서의 설치, macOS와 Linux는 시험하지 않았습니다.
 
@@ -130,4 +130,4 @@ Windows 11, Node.js 24, 공식 npm 패키지 0.2.2-rc.1에서 태그를 지정�
 
 [MIT 라이선스](LICENSE) · Copyright (c) 2026 Burntgogi
 
-[LICENSE](LICENSE)에 dsh-locale-pack과 DeepSeek Harness의 MIT 고지, 안내 그림에 쓴 Noto 글꼴의 OFL 고지를 함께 적었습니다. DeepSeek과 DeepSeek Harness는 DeepSeek의 상표입니다.
+dsh-locale-pack의 저작권 고지는 [LICENSE](LICENSE)에, DeepSeek Harness의 MIT 고지와 안내 그림에 쓴 Noto 글꼴의 OFL 고지는 [NOTICE.md](NOTICE.md)에 있습니다. DeepSeek과 DeepSeek Harness는 DeepSeek의 상표입니다.

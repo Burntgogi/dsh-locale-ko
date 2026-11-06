@@ -46,7 +46,8 @@
     "previews/*/*.svg",
     "README.md",
     "CHANGELOG.md",
-    "assets/plugins-ko.png"
+    "assets/plugins-ko.png",
+    "NOTICE.md"
   ],
   "engines": {
     "dsh": "0.2.2-rc.1"
