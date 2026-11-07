@@ -1,7 +1,7 @@
 {
   "name": "dsh-locale-ko",
-  "description": "Unofficial Korean localization plugin for DeepSeek Harness 0.2.2-rc.1 (web and desktop)",
-  "version": "0.7.0",
+  "description": "Unofficial Korean localization plugin for DeepSeek Harness (web and desktop)",
+  "version": "0.7.1",
   "type": "module",
   "main": "lib/index.js",
   "exports": {
@@ -50,7 +50,7 @@
     "NOTICE.md"
   ],
   "engines": {
-    "dsh": "0.2.2-rc.1"
+    "dsh": ">=0.2.2-rc.1"
   },
   "homepage": "https://github.com/Burntgogi/dsh-locale-ko#readme",
   "bugs": {

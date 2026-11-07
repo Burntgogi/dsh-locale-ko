@@ -5,7 +5,7 @@
 <h1 align="center">dsh-locale-ko<br>DeepSeek Harness를<br>한국어로 씁니다.</h1>
 
 <p align="center">
-  DeepSeek Harness 0.2.2-rc.1의 웹판과 데스크톱판을 한국어로 표시하는 플러그인입니다.
+  DeepSeek Harness의 웹판과 데스크톱판을 한국어로 표시하는 플러그인입니다.
 </p>
 
 <p align="center">
@@ -18,7 +18,7 @@
 </p>
 
 <p align="center">
-  <a href="#지원-버전"><img src="https://img.shields.io/badge/DSH-0.2.2--rc.1-1f6feb" alt="지원 버전: DSH 0.2.2-rc.1"></a>
+  <a href="#지원-버전"><img src="https://img.shields.io/badge/DSH-verified%200.2.2--rc.1-1f6feb" alt="확인한 버전: DSH 0.2.2-rc.1"></a>
   <a href="#번역-범위"><img src="https://img.shields.io/badge/UI-3%2C843%20keys-2da44e" alt="UI 사전: 3,843개 키"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-lightgrey" alt="라이선스: MIT"></a>
 </p>
@@ -33,13 +33,13 @@
 ### 웹판
 
 ```bash
-dsh plugin --profile web add github:Burntgogi/dsh-locale-ko#v0.7.0
+dsh plugin --profile web add github:Burntgogi/dsh-locale-ko#v0.7.1
 ```
 
 웹판을 다시 시작하세요. 앱의 **플러그인 → 플러그인 추가**에 저장소 주소를 넣고 **지금 활성화**를 눌러도 됩니다. 이 방법은 다시 시작하지 않아도 됩니다.
 
 ```text
-https://github.com/Burntgogi/dsh-locale-ko#v0.7.0
+https://github.com/Burntgogi/dsh-locale-ko#v0.7.1
 ```
 
 ### 데스크톱판
@@ -102,7 +102,9 @@ Copy-Item $output "$res\app.asar" -Force
 
 ### 지원 버전
 
-DSH 0.2.2-rc.1만 지원합니다. 다른 버전에서는 설치가 거부됩니다. 하네스를 새 버전으로 올리면 그 버전을 지원하는 릴리스가 필요합니다.
+DSH 0.2.2-rc.1 이상에 설치됩니다. 확인한 버전은 0.2.2-rc.1입니다. 이후 버전은 이 문서에 적히기 전까지 확인되지 않았으며, 일부 문구가 영어로 나오거나 동작하지 않을 수 있습니다.
+
+표시 패치는 0.2.2-rc.1에서만 실행됩니다. 다른 버전에서는 오류를 내고 멈춥니다.
 
 ### 업데이트
 
