@@ -33,13 +33,13 @@
 ### 웹판
 
 ```bash
-dsh plugin --profile web add github:Burntgogi/dsh-locale-ko#v0.8.0
+dsh plugin --profile web add github:Burntgogi/dsh-locale-ko#v0.7.2
 ```
 
 웹판을 다시 시작하세요. 앱의 **플러그인 → 플러그인 추가**에 저장소 주소를 넣고 **지금 활성화**를 눌러도 됩니다. 이 방법은 다시 시작하지 않아도 됩니다.
 
 ```text
-https://github.com/Burntgogi/dsh-locale-ko#v0.8.0
+https://github.com/Burntgogi/dsh-locale-ko#v0.7.2
 ```
 
 ### 데스크톱판
@@ -126,7 +126,7 @@ Windows 11, Node.js 24, 공식 npm 패키지 0.2.2-rc.1에서 태그를 지정�
 
 데스크톱 패치는 서명이 유효한 공식 설치 파일에서 꺼낸 `app.asar`로 만들었고, 패치한 앱이 부팅되는 것까지 확인했습니다. macOS와 Linux는 시험하지 않았습니다.
 
-0.8.0은 npm에 0.2.2-rc.2가 올라오기 전에, 서명이 유효한 Windows 0.2.2-rc.2 설치 파일에 들어 있는 웹판 CLI로 시험했습니다. 격리한 홈에서 플러그인 설치, 웹판 패치, 플러그인 화면과 웹 검색 설정 화면의 한국어 표시를 확인했고, 패치한 모듈의 문법과 재적용 시 변화가 없음을 확인했습니다. 데스크톱 패치는 같은 설치 파일의 `app.asar`로 만들고 무결성을 확인했습니다.
+0.7.2는 npm에 0.2.2-rc.2가 올라오기 전에, 서명이 유효한 Windows 0.2.2-rc.2 설치 파일에 들어 있는 웹판 CLI로 시험했습니다. 격리한 홈에서 플러그인 설치, 웹판 패치, 플러그인 화면과 웹 검색 설정 화면의 한국어 표시를 확인했고, 패치한 모듈의 문법과 재적용 시 변화가 없음을 확인했습니다. 데스크톱 패치는 같은 설치 파일의 `app.asar`로 만들고 무결성을 확인했습니다.
 
 번역 오류는 [이슈](https://github.com/Burntgogi/dsh-locale-ko/issues)로 알려 주세요.
 
