@@ -41,6 +41,7 @@
   "menu.defaultApp": "기본 앱에서 열기",
   "menu.external": "외부 브라우저에서 열기",
   "menu.finder": "Finder에 표시",
+  "menu.openIn": "다음에서 열기",
   "menu.openInFloat": "떠 있는 패널에서 열기",
   "menu.openInSidebar": "사이드바에서 열기",
   "menu.reveal": "폴더에 표시",

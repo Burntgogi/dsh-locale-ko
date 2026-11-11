@@ -35,15 +35,15 @@ function read(file) {
 const hash = value => createHash('sha256').update(value).digest('hex')
 const mainFile = 'lib/main.js'
 const main = read(mainFile)
-assert.equal(JSON.parse(read('package.json')).version, '0.2.2-rc.1')
-assert.equal(hash(main), 'f42ed25b0b844a63e515a3aff93dee89b781dae7fcbbbbfc93e04d95ad399ec1',
-  'Expected the original Windows 0.2.2-rc.1 Electron entry point')
+assert.equal(JSON.parse(read('package.json')).version, '0.2.2-rc.2')
+assert.equal(hash(main), 'd8a5f9bd5e1c72e59ec52c036278d7ff5605f40cf70df3dd1721f5c12cbab817',
+  'Expected the original Windows 0.2.2-rc.2 Electron entry point')
 
 const ko = JSON.parse(readFileSync(new URL('./ko.json', import.meta.url), 'utf8'))
 const source = main.slice(main.indexOf('const en = {\n\tcliCommandMenu:'), main.indexOf('const dictionaries = {'))
 const en = Object.fromEntries([...source.matchAll(/^\t([a-zA-Z]\w*): ("(?:\\.|[^"\\])*"),?$/gm)]
   .map(([, key, value]) => [key, JSON.parse(value)]))
-assert.equal(Object.keys(en).length, 174)
+assert.equal(Object.keys(en).length, 189)
 assert.deepEqual(Object.keys(ko).sort(), Object.keys(en).sort())
 const variables = value => [...value.matchAll(/\{([^{}]+)\}/g)].map(match => match[1]).sort()
 for (const key of Object.keys(en)) assert.deepEqual(variables(ko[key]), variables(en[key]), key)
@@ -61,8 +61,8 @@ const patchedMain = addKoreanDictionary(main, mainFile)
 const moduleRoot = 'dsh/node_modules/'
 const patches = new Map([[mainFile, patchedMain]])
 for (const [file, expectedHash] of [
-  ['lib/preload-app.cjs', 'd6126b3555fcb679f79922c23976025ab260a08f98bc2d20984e112ded397b96'],
-  ['lib/preload-welcome.cjs', '07769d8837dfb5eaed21cf111d6304771761f8715f83317d8aa1cd110035c51b'],
+  ['lib/preload-app.cjs', 'cca56f6da8272f4b78b708a285816fcfd567e701f1248eab777d3943c50e233e'],
+  ['lib/preload-welcome.cjs', '2d220e580102b6ffc2ce89e86ad4ee9041ef2745a06c372c0b33f8dc1d10a52d'],
 ]) {
   const source = read(file)
   assert.equal(hash(source), expectedHash, file)
@@ -105,4 +105,4 @@ try {
 } finally {
   closeSync(fd)
 }
-console.log(`Localized RC1 archive written with ${Object.keys(ko).length} native strings in 3 shell modules and ${patches.size - 3} package resources.`)
+console.log(`Localized RC2 archive written with ${Object.keys(ko).length} native strings in 3 shell modules and ${patches.size - 3} package resources.`)

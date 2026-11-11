@@ -79,6 +79,8 @@
   "switchToAscending": "오름차순 정렬",
   "switchToDescending": "내림차순 정렬",
   "title": "탐색",
+  "update": "업데이트",
+  "updateTitle": "{name}을(를) {version}(으)로 업데이트",
   "versionDefault": "권장됨",
   "versionExempted": "호환성 예외 적용됨",
   "versionIncompatible": "호환되지 않음",

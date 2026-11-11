@@ -172,5 +172,20 @@
   "mandatoryCopied": "링크 복사됨",
   "mandatoryCopyFailed": "링크를 복사하지 못했습니다. 아래 링크를 선택해 직접 복사하세요.",
   "mandatoryAddress": "다운로드 링크",
-  "mandatoryNotification": "앱으로 돌아가 설치를 확인하고 다시 시작하세요."
+  "mandatoryNotification": "앱으로 돌아가 설치를 확인하고 다시 시작하세요.",
+  "substitutionsMenu": "대치",
+  "speechMenu": "말하기",
+  "updateConfigurationFailed": "업데이트 설정을 적용하지 못했습니다. 구성 파일을 고친 뒤 다시 시작하거나, 설정에서 업데이트 채널을 선택하세요.",
+  "updateConfigurationRead": "설정 파일 오류로 업데이트가 일시 중지됨",
+  "updateConfigurationFormat": "설정 파일 오류로 업데이트가 일시 중지됨",
+  "updateConfigurationChannel": "설정 파일 오류로 업데이트가 일시 중지됨",
+  "updateConfigurationCleanup": "업데이트 일시 중지됨: 이전 업데이트를 지울 수 없습니다. 앱을 다시 시작하세요",
+  "updateReloadSettings": "설정 다시 불러오기",
+  "updateConfigurationDetails": "설정 검토",
+  "updateShowSettingsFile": "설정 파일 보기",
+  "updateDownloadSpaceFailed": "업데이트를 내려받을 디스크 공간이 부족합니다. 공간을 확보한 뒤 다시 시도하세요.",
+  "updateDownloadPermissionFailed": "업데이트 파일을 쓸 수 없습니다. 폴더 권한을 확인한 뒤 다시 시도하세요.",
+  "updateDownloadBusyFailed": "업데이트 파일이 사용 중입니다. 해당 프로그램을 닫은 뒤 다시 시도하세요.",
+  "updateDownloadInProgress": "업데이트 내려받는 중",
+  "updateDownloadDetail": "업데이트를 백그라운드에서 내려받고 있습니다. 앱을 계속 사용할 수 있습니다."
 }

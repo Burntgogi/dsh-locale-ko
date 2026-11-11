@@ -18,8 +18,8 @@
 </p>
 
 <p align="center">
-  <a href="#지원-버전"><img src="https://img.shields.io/badge/DSH-verified%200.2.2--rc.1-1f6feb" alt="확인한 버전: DSH 0.2.2-rc.1"></a>
-  <a href="#번역-범위"><img src="https://img.shields.io/badge/UI-3%2C843%20keys-2da44e" alt="UI 사전: 3,843개 키"></a>
+  <a href="#지원-버전"><img src="https://img.shields.io/badge/DSH-verified%200.2.2--rc.2-1f6feb" alt="확인한 버전: DSH 0.2.2-rc.2"></a>
+  <a href="#번역-범위"><img src="https://img.shields.io/badge/UI-4%2C228%20keys-2da44e" alt="UI 사전: 4,228개 키"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-lightgrey" alt="라이선스: MIT"></a>
 </p>
 
@@ -33,13 +33,13 @@
 ### 웹판
 
 ```bash
-dsh plugin --profile web add github:Burntgogi/dsh-locale-ko#v0.7.1
+dsh plugin --profile web add github:Burntgogi/dsh-locale-ko#v0.8.0
 ```
 
 웹판을 다시 시작하세요. 앱의 **플러그인 → 플러그인 추가**에 저장소 주소를 넣고 **지금 활성화**를 눌러도 됩니다. 이 방법은 다시 시작하지 않아도 됩니다.
 
 ```text
-https://github.com/Burntgogi/dsh-locale-ko#v0.7.1
+https://github.com/Burntgogi/dsh-locale-ko#v0.8.0
 ```
 
 ### 데스크톱판
@@ -56,7 +56,7 @@ https://github.com/Burntgogi/dsh-locale-ko#v0.7.1
 
 플러그인만 설치하면 화면 문구가 번역됩니다. 공식 플러그인 이름과 앱 메뉴는 하네스 파일 안에 있어서 [표시 패치](#표시-패치)를 적용해야 바뀝니다.
 
-| 설치 방법 | 화면 문구 3,843개 | 공식 플러그인 이름·설명 | 메뉴·트레이·종료 안내 |
+| 설치 방법 | 화면 문구 4,228개 | 공식 플러그인 이름·설명 | 메뉴·트레이·종료 안내 |
 | --- | --- | --- | --- |
 | 플러그인만 | 한국어 | 영어 | 영어 |
 | 플러그인 + 웹판 패치 | 한국어 | 한국어 | 해당 없음 |
@@ -78,7 +78,7 @@ node "$HOME/.dsh/profiles/web/node_modules/dsh-locale-ko/tools/patch-web.mjs" "$
 
 ### 데스크톱판 (Windows 전용)
 
-진입 파일의 해시로 공식 Windows 0.2.2-rc.1인지 확인하며, 다르면 멈춥니다. 앱을 완전히 종료한 뒤 PowerShell에서 실행하세요.
+진입 파일의 해시로 공식 Windows 0.2.2-rc.2인지 확인하며, 다르면 멈춥니다. 앱을 완전히 종료한 뒤 PowerShell에서 실행하세요.
 
 ```powershell
 $ErrorActionPreference = "Stop"
@@ -92,7 +92,7 @@ if ($LASTEXITCODE -ne 0) { throw "패치를 만들지 못했습니다." }
 Copy-Item $output "$res\app.asar" -Force
 ```
 
-처음 실행할 때 `app.asar`를 `app.official.asar`로 백업합니다. 이 백업은 지우지 마세요. 패치를 다시 만들 때 입력으로 씁니다.
+처음 실행할 때 `app.asar`를 `app.official.asar`로 백업합니다. 이 백업은 지우지 마세요. 패치를 다시 만들 때 입력으로 씁니다. 앱을 새 버전으로 업데이트했다면 남아 있는 `app.official.asar`는 이전 버전이므로, 지운 뒤 위 명령을 다시 실행해 새 공식 파일을 백업하세요.
 
 패치한 앱은 언어를 따로 고르지 않은 첫 실행에서 OS 언어와 관계없이 메뉴와 트레이를 한국어로 표시합니다.
 
@@ -102,9 +102,9 @@ Copy-Item $output "$res\app.asar" -Force
 
 ### 지원 버전
 
-DSH 0.2.2-rc.1 이상에 설치됩니다. 확인한 버전은 0.2.2-rc.1입니다. 이후 버전은 이 문서에 적히기 전까지 확인되지 않았으며, 일부 문구가 영어로 나오거나 동작하지 않을 수 있습니다.
+DSH 0.2.2-rc.2 이상에 설치됩니다. 확인한 버전은 0.2.2-rc.2입니다. 이후 버전은 이 문서에 적히기 전까지 확인되지 않았으며, 일부 문구가 영어로 나오거나 동작하지 않을 수 있습니다.
 
-표시 패치는 0.2.2-rc.1에서만 실행됩니다. 다른 버전에서는 오류를 내고 멈춥니다.
+표시 패치는 0.2.2-rc.2에서만 실행됩니다. 다른 버전에서는 오류를 내고 멈춥니다. 0.2.2-rc.1에는 [v0.7.1](https://github.com/Burntgogi/dsh-locale-ko/tree/v0.7.1)을 쓰세요.
 
 ### 업데이트
 
@@ -125,6 +125,8 @@ dsh plugin --profile web remove dsh-locale-ko
 Windows 11, Node.js 24, 공식 npm 패키지 0.2.2-rc.1에서 태그를 지정한 Git 설치와 번들 자동 등록, 제거를 시험했습니다. 공개 후 `github:` 지정, HTTPS 주소, Release의 `.tgz` 주소로 명령줄 설치가 되는 것과 웹판·데스크톱 앱의 **플러그인 추가** 화면으로 설치되는 것도 확인했습니다. 한국어 브라우저에서 자동으로 한국어가 선택되는 것과, 패치 전후로 플러그인 화면의 이름이 영어에서 한국어로 바뀌는 것을 확인했습니다. 사전의 키와 자리표시자는 배포본 영어 원문과 대조했습니다.
 
 데스크톱 패치는 서명이 유효한 공식 설치 파일에서 꺼낸 `app.asar`로 만들었고, 패치한 앱이 부팅되는 것까지 확인했습니다. macOS와 Linux는 시험하지 않았습니다.
+
+0.8.0은 npm에 0.2.2-rc.2가 올라오기 전에, 서명이 유효한 Windows 0.2.2-rc.2 설치 파일에 들어 있는 웹판 CLI로 시험했습니다. 격리한 홈에서 플러그인 설치, 웹판 패치, 플러그인 화면과 웹 검색 설정 화면의 한국어 표시를 확인했고, 패치한 모듈의 문법과 재적용 시 변화가 없음을 확인했습니다. 데스크톱 패치는 같은 설치 파일의 `app.asar`로 만들고 무결성을 확인했습니다.
 
 번역 오류는 [이슈](https://github.com/Burntgogi/dsh-locale-ko/issues)로 알려 주세요.
 

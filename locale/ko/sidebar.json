@@ -2,6 +2,8 @@
   "navigation.label": "탐색",
   "panels.label": "전역 패널",
   "panels.more": "더 보기",
+  "panels.unpin": "{name}을(를) 사이드바에서 고정 해제",
+  "panels.unpinTooltip": "왼쪽 사이드바에서 고정 해제",
   "session.new": "새 세션",
   "session.new.label": "새 세션",
   "toggle.collapse": "사이드바 접기",

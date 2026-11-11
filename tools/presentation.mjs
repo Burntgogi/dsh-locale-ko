@@ -36,10 +36,6 @@ const catalogKorean = {
     title: 'Codex 서브에이전트',
     description: 'Codex 자체의 인증과 설정을 사용해 작업 하나를 위임합니다.',
   },
-  '@deepseek-ai/dsh-cua-bundle': {
-    title: '컴퓨터 사용',
-    description: '현재 macOS를 지원하며 Windows 지원은 개발 중입니다. 기존 및 새 PTC 세션에서 컴퓨터를 사용할 수 있습니다. PTC 모드로 바꾸고 손쉬운 사용 및 화면 기록 권한을 부여하세요.',
-  },
 }
 
 const catalogReadmes = {
@@ -53,24 +49,16 @@ function replaceOnce(source, search, replacement) {
 }
 
 function patchEffort(source) {
-  if (source.includes('const localizedEffortName =')) return source
-  const helper = `const localizedEffortName = (effort) => {
-                const labels = {
-                    off: ["Off", "끔"], minimal: ["Minimal", "최소"], low: ["Low", "낮음"],
-                    medium: ["Medium", "보통"], high: ["High", "높음"],
-                    xhigh: ["Extra High", "매우 높음"], max: ["Max", "최대"]
-                };
-                const label = labels[effort.id];
-                return label && effort.name.toLowerCase().replace(/[-_ ]/g, "") === label[0].toLowerCase().replace(/[-_ ]/g, "")
-                    ? resolveText({ en: effort.name, ko: label[1] }) : effort.name;
-            };
-            const selectedEffort = reasoning?.efforts.find((level) => level.id === effectiveEffort);
-            const effortLabel =`
-  source = replaceOnce(source, 'const effortLabel =', helper)
-  source = replaceOnce(source, 'reasoning.efforts.find((level) => level.id === effectiveEffort)?.name ?? effectiveEffort',
-    'selectedEffort ? localizedEffortName(selectedEffort) : effectiveEffort')
-  source = replaceOnce(source, 'label: effort.name', 'label: localizedEffortName(effort)')
-  return replaceOnce(source, '}))], [reasoning, t]);', '}))], [reasoning, t, resolveText]);')
+  if (source.includes('const localizedEffortName=')) return source
+  const helper = 'const localizedEffortName=effort=>{const labels={off:["Off","끔"],minimal:["Minimal","최소"],low:["Low","낮음"],' +
+    'medium:["Medium","보통"],high:["High","높음"],xhigh:["Extra High","매우 높음"],max:["Max","최대"]};const label=labels[effort.id];' +
+    'return label&&effort.name.toLowerCase().replace(/[-_ ]/g,"")===label[0].toLowerCase().replace(/[-_ ]/g,"")' +
+    '?resolveText({en:effort.name,ko:label[1]}):effort.name};' +
+    'const selectedEffort=reasoning?.efforts.find(level=>level.id===effectiveEffort);const effortLabel='
+  source = replaceOnce(source, 'const effortLabel=', helper)
+  source = replaceOnce(source, 'reasoning.efforts.find(level=>level.id===effectiveEffort)?.name??effectiveEffort',
+    '(selectedEffort?localizedEffortName(selectedEffort):effectiveEffort)')
+  return replaceOnce(source, 'label:effort.name}))],[reasoning,t]);', 'label:localizedEffortName(effort)}))],[reasoning,t,resolveText]);')
 }
 
 function patchApproval(source) {
@@ -118,9 +106,12 @@ function patchModuleMetadata(source) {
 function patchOfficialCatalog(source) {
   if (source.includes('const koreanCatalogMetadata =')) return source
   const declaration = 'const OFFICIAL_ON_DEMAND_CATALOG = ['
-  const end = source.indexOf('\n];', source.indexOf(declaration) + declaration.length)
-  assert.ok(source.includes(declaration) && end > 0, 'Official on-demand catalog')
-  const entries = source.slice(source.indexOf(declaration), end)
+  const begin = source.indexOf(declaration)
+  // The array closes on its own line (`\n];`) or right after the last entry (`\n}];`).
+  const close = /\n\}?\];/.exec(source.slice(begin))
+  assert.ok(begin >= 0 && close, 'Official on-demand catalog')
+  const end = begin + close.index + close[0].length - 3
+  const entries = source.slice(begin, end)
   for (const name of Object.keys(catalogKorean)) {
     assert.ok(entries.includes('packageName: ' + JSON.stringify(name)), name)
   }
@@ -159,8 +150,7 @@ function patchCatalogReadmes(source) {
   source = replaceOnce(source, anchor, `${declaration}
 function localizeCatalogReadme(bundle, languages, document) {
 \tif (!languages.includes("ko") || document.origin !== "readme" || document.path !== "README.md") return document.markdown;
-\tconst version = bundle.availability === "missing" ? bundle.installTarget?.version : bundle.version;
-\tif (version !== "0.2.2-rc.1" || !Object.hasOwn(koreanCatalogReadmes, bundle.name)) return document.markdown;
+\tif (!Object.hasOwn(koreanCatalogReadmes, bundle.name)) return document.markdown;
 \tconst translated = koreanCatalogReadmes[bundle.name];
 \treturn createHash("sha256").update(document.markdown).digest("hex") === translated.hash
 \t\t? translated.markdown : document.markdown;
@@ -192,6 +182,34 @@ function addKoreanDetails(result, read) {
   }
 }
 
+// Web search and fetch providers declare their picker descriptions inline (en, zh, ...), outside any dictionary.
+const providerDescriptions = {
+  '@deepseek-ai/dsh-web-deepseek-api/lib/index.js': {
+    "Can't reach intranet or local addresses. Incurs charges, paid by the account or API key chosen under Billing.":
+      '인트라넷이나 로컬 주소에는 접근할 수 없습니다. 요금이 발생하며, 과금에서 선택한 계정이나 API 키로 청구됩니다.',
+    'Incurs charges, paid by the account or API key chosen under Billing.':
+      '요금이 발생하며, 과금에서 선택한 계정이나 API 키로 청구됩니다.',
+  },
+  '@deepseek-ai/dsh-web-fetch-http/lib/index.js': {
+    'Free, and can reach intranet and local addresses. Does not support pages that need JavaScript or sign-in, or PDFs.':
+      '무료이며 인트라넷과 로컬 주소에도 접근할 수 있습니다. JavaScript나 로그인이 필요한 페이지, PDF는 지원하지 않습니다.',
+  },
+  '@deepseek-ai/dsh-web-search-deepseek/lib/index.js': {
+    'Slower, and every search uses extra model tokens. Requires a DeepSeek account or API key.':
+      '느리고 검색할 때마다 모델 토큰을 추가로 씁니다. DeepSeek 계정이나 API 키가 필요합니다.',
+  },
+}
+
+function patchProviderDescriptions(source, translations) {
+  for (const [english, korean] of Object.entries(translations)) {
+    const declaration = '\tdescription = {\n\t\t'
+    const line = 'en: ' + JSON.stringify(english) + ','
+    if (source.includes(declaration + 'ko: ' + JSON.stringify(korean) + ',\n\t\t' + line)) continue
+    source = replaceOnce(source, declaration + line, declaration + 'ko: ' + JSON.stringify(korean) + ',\n\t\t' + line)
+  }
+  return source
+}
+
 export function presentationFiles(read) {
   const result = new Map([
     [effortFile, patchEffort(read(effortFile))],
@@ -199,6 +217,7 @@ export function presentationFiles(read) {
     [bootFile, patchModuleMetadata(read(bootFile))],
     [catalogFile, patchOfficialCatalog(read(catalogFile))],
     [managerFile, patchCatalogReadmes(read(managerFile))],
+    ...Object.entries(providerDescriptions).map(([file, translations]) => [file, patchProviderDescriptions(read(file), translations)]),
   ])
   for (const [file, translated] of Object.entries(metadata)) {
     if (read(file.replace(/ko\.json$/, 'en.json')) === undefined) continue

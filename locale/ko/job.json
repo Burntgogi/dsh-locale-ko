@@ -1,8 +1,6 @@
 {
   "count.idle.one": "{count}개 백그라운드 작업",
   "count.idle.other": "{count} 개의 백그라운드 작업",
-  "count.live.one": "{count}개 백그라운드 작업 실행 중",
-  "count.live.other": "{count}개 백그라운드 작업 실행 중",
   "duration.hours": "{hours}시간 {minutes}분",
   "duration.minutes": "{minutes}분 {seconds}초",
   "duration.seconds": "{seconds}초",
