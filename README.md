@@ -30,18 +30,27 @@
 
 ## 설치
 
-0.7.3 로컬 패키지는 아래 명령으로 만들 수 있습니다. 생성된 파일의 절대 경로를 사용하세요.
+DSH 0.2.2-rc.5에서는 한국어 팩 `v0.7.3`을 사용하세요. 웹판과 Windows 앱은 각각의 프로필에 설치하므로 둘 다 사용한다면 아래 두 절차를 각각 진행하세요. [v0.7.3 릴리스](https://github.com/Burntgogi/dsh-locale-ko/releases/tag/v0.7.3)
+
+### 웹판
+
+터미널에서 다음 명령으로 GitHub 태그를 `web` 프로필에 설치하세요.
 
 ```bash
-npm pack
-dsh plugin --profile web add file:/path/to/dsh-locale-ko-0.7.3.tgz
+dsh plugin --profile web add github:Burntgogi/dsh-locale-ko#v0.7.3
 ```
 
-데스크톱 앱에서는 **플러그인 → 플러그인 추가**에서 로컬 패키지를 선택하고 활성화하세요.
+설치가 끝나면 DSH 웹 서버를 다시 시작하고 브라우저에서 페이지를 새로 고치세요.
+
+### Windows 앱판
+
+1. 앱 사이드바에서 **Plugins → Add plugin**(플러그인 → 플러그인 추가)을 여세요.
+2. **Package name or address**(패키지 이름 또는 주소)에 `github:Burntgogi/dsh-locale-ko#v0.7.3`을 붙여 넣고 **Install**(설치)을 누르세요.
+3. 설치 후 **Enable now**(지금 활성화)가 표시되면 누르세요. 앱 메뉴에서 **Quit**(종료)을 선택한 뒤 DeepSeek Harness를 다시 실행하세요.
 
 ### 언어 선택
 
-브라우저나 OS 언어가 한국어면 바로 한국어로 표시됩니다. 영어로 나오면 **Settings → General → Language**에서 한국어를 고르세요.
+브라우저나 OS 언어가 한국어면 바로 한국어로 표시됩니다. 영어로 나오면 **Settings → General → Language**에서 **한국어**를 고르세요. 웹판과 앱판 모두 **설정 → 일반**에서 선택한 언어와 현재 DSH 버전을 확인할 수 있습니다.
 
 설치할 때 `missing peer @deepseek-ai/cordis` 경고가 나올 수 있습니다. cordis는 하네스에 포함된 패키지이며, 시험한 환경에서는 동작에 영향이 없었습니다.
 
@@ -101,11 +110,7 @@ DSH 0.2.2-rc.5 이상에 설치됩니다. 확인한 버전은 0.2.2-rc.5입니�
 
 ### 업데이트
 
-저장소 주소의 태그를 새 릴리스 태그로 바꿔 다시 추가하세요. 아래 `v0.8.0`은 예시입니다.
-
-```bash
-dsh plugin --profile web add github:Burntgogi/dsh-locale-ko#v0.8.0
-```
+새 버전으로 올릴 때는 위 설치 방법에서 `#v0.7.3`을 사용할 릴리스 태그로 바꾸세요. [릴리스 목록](https://github.com/Burntgogi/dsh-locale-ko/releases)
 
 ### 제거
 
@@ -115,11 +120,25 @@ dsh plugin --profile web remove dsh-locale-ko
 
 ## 확인한 범위
 
+2026년 11월 21일, 웹판과 Windows 앱판에 GitHub `v0.7.3` 태그를 설치했습니다. 두 프로필 모두 같은 커밋을 가리켰고, 재시작 후 **설정 → 일반**에 **한국어**와 **현재 버전: 0.2.2-rc.5**가 표시됐습니다. [검증한 커밋](https://github.com/Burntgogi/dsh-locale-ko/commit/d851031612cfd3c010792ed843ee1b62c800b755)
+
+| 환경 | rc.5 표시 패치 적용 후 확인한 화면 |
+| --- | --- |
+| 웹판 | 플러그인 목록에서 **DeepSeek 대화 가져오기**의 이름과 설명을 확인하고 한국어 상세 안내를 열었습니다. |
+| Windows 앱판 | **응용 프로그램** 메뉴에서 **업데이트 확인…**, **dsh 명령 관리…**, **종료**를 확인했습니다. 웹 검색 제공자 목록에는 **DeepSeek 서버 측 검색**이 표시됐습니다. |
+
+공통 UI 사전 4,260개 키와 치환 변수는 웹·Windows 배포본의 원문과 각각 대조했습니다.
+
+<details>
+<summary>이전 버전 검증 기록</summary>
+
 Windows 11, Node.js 24, 공식 npm 패키지 0.2.2-rc.1에서 태그를 지정한 Git 설치와 번들 자동 등록, 제거를 시험했습니다. 공개 후 `github:` 지정, HTTPS 주소, Release의 `.tgz` 주소로 명령줄 설치가 되는 것과 웹판·데스크톱 앱의 **플러그인 추가** 화면으로 설치되는 것도 확인했습니다. 한국어 브라우저에서 자동으로 한국어가 선택되는 것과, 패치 전후로 플러그인 화면의 이름이 영어에서 한국어로 바뀌는 것을 확인했습니다. 사전의 키와 자리표시자는 배포본 영어 원문과 대조했습니다.
 
 데스크톱 패치는 서명이 유효한 공식 설치 파일에서 꺼낸 `app.asar`로 만들었고, 패치한 앱이 부팅되는 것까지 확인했습니다. macOS와 Linux는 시험하지 않았습니다.
 
 0.7.2는 npm에 0.2.2-rc.2가 올라오기 전에, 서명이 유효한 Windows 0.2.2-rc.2 설치 파일에 들어 있는 웹판 CLI로 시험했습니다. 격리한 홈에서 플러그인 설치, 웹판 패치, 플러그인 화면과 웹 검색 설정 화면의 한국어 표시를 확인했고, 패치한 모듈의 문법과 재적용 시 변화가 없음을 확인했습니다. 데스크톱 패치는 같은 설치 파일의 `app.asar`로 만들고 무결성을 확인했습니다.
+
+</details>
 
 번역 오류는 [이슈](https://github.com/Burntgogi/dsh-locale-ko/issues)로 알려 주세요.
 
