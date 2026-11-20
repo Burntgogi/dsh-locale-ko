@@ -3,7 +3,7 @@ import { readFileSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
 import { presentationFiles } from './presentation.mjs'
 
-assert.equal(process.argv.length, 3, 'Usage: node tools/patch-web.mjs <RC2 node_modules directory>')
+assert.equal(process.argv.length, 3, 'Usage: node tools/patch-web.mjs <RC5 node_modules directory>')
 const modules = path.resolve(process.argv[2])
 const read = file => {
   try {
@@ -12,11 +12,11 @@ const read = file => {
     if (error.code !== 'ENOENT') throw error
   }
 }
-assert.equal(JSON.parse(read('@deepseek-ai/dsh/package.json')).version, '0.2.2-rc.2')
+assert.equal(JSON.parse(read('@deepseek-ai/dsh/package.json')).version, '0.2.2-rc.5')
 const files = presentationFiles(read)
 for (const [file, content] of files) {
   const target = path.resolve(modules, file)
   assert.ok(target.startsWith(modules + path.sep), file)
   if (read(file) !== content) writeFileSync(target, content)
 }
-console.log(`RC2 display resources checked: ${files.size}`)
+console.log(`RC5 display resources checked: ${files.size}`)

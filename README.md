@@ -18,8 +18,8 @@
 </p>
 
 <p align="center">
-  <a href="#지원-버전"><img src="https://img.shields.io/badge/DSH-verified%200.2.2--rc.2-1f6feb" alt="확인한 버전: DSH 0.2.2-rc.2"></a>
-  <a href="#번역-범위"><img src="https://img.shields.io/badge/UI-4%2C228%20keys-2da44e" alt="UI 사전: 4,228개 키"></a>
+  <a href="#지원-버전"><img src="https://img.shields.io/badge/DSH-verified%200.2.2--rc.5-1f6feb" alt="확인한 버전: DSH 0.2.2-rc.5"></a>
+  <a href="#번역-범위"><img src="https://img.shields.io/badge/UI-4%2C260%20keys-2da44e" alt="UI 사전: 4,260개 키"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-lightgrey" alt="라이선스: MIT"></a>
 </p>
 
@@ -30,21 +30,14 @@
 
 ## 설치
 
-### 웹판
+0.7.3 로컬 패키지는 아래 명령으로 만들 수 있습니다. 생성된 파일의 절대 경로를 사용하세요.
 
 ```bash
-dsh plugin --profile web add github:Burntgogi/dsh-locale-ko#v0.7.2
+npm pack
+dsh plugin --profile web add file:/path/to/dsh-locale-ko-0.7.3.tgz
 ```
 
-웹판을 다시 시작하세요. 앱의 **플러그인 → 플러그인 추가**에 저장소 주소를 넣고 **지금 활성화**를 눌러도 됩니다. 이 방법은 다시 시작하지 않아도 됩니다.
-
-```text
-https://github.com/Burntgogi/dsh-locale-ko#v0.7.2
-```
-
-### 데스크톱판
-
-앱의 **플러그인 → 플러그인 추가**에 위 주소를 넣고 설치가 끝나면 **지금 활성화**를 누르세요. 데스크톱 프로필은 앱이 관리하므로 `dsh plugin --profile desktop` 명령은 거부됩니다.
+데스크톱 앱에서는 **플러그인 → 플러그인 추가**에서 로컬 패키지를 선택하고 활성화하세요.
 
 ### 언어 선택
 
@@ -56,7 +49,7 @@ https://github.com/Burntgogi/dsh-locale-ko#v0.7.2
 
 플러그인만 설치하면 화면 문구가 번역됩니다. 공식 플러그인 이름과 앱 메뉴는 하네스 파일 안에 있어서 [표시 패치](#표시-패치)를 적용해야 바뀝니다.
 
-| 설치 방법 | 화면 문구 4,228개 | 공식 플러그인 이름·설명 | 메뉴·트레이·종료 안내 |
+| 설치 방법 | 화면 문구 4,260개 | 공식 플러그인 이름·설명 | 메뉴·트레이·종료 안내 |
 | --- | --- | --- | --- |
 | 플러그인만 | 한국어 | 영어 | 영어 |
 | 플러그인 + 웹판 패치 | 한국어 | 한국어 | 해당 없음 |
@@ -78,7 +71,7 @@ node "$HOME/.dsh/profiles/web/node_modules/dsh-locale-ko/tools/patch-web.mjs" "$
 
 ### 데스크톱판 (Windows 전용)
 
-진입 파일의 해시로 공식 Windows 0.2.2-rc.2인지 확인하며, 다르면 멈춥니다. 앱을 완전히 종료한 뒤 PowerShell에서 실행하세요.
+진입 파일의 해시로 공식 Windows 0.2.2-rc.5인지 확인하며, 다르면 멈춥니다. 앱을 완전히 종료한 뒤 PowerShell에서 실행하세요.
 
 ```powershell
 $ErrorActionPreference = "Stop"
@@ -102,9 +95,9 @@ Copy-Item $output "$res\app.asar" -Force
 
 ### 지원 버전
 
-DSH 0.2.2-rc.2 이상에 설치됩니다. 확인한 버전은 0.2.2-rc.2입니다. 이후 버전은 이 문서에 적히기 전까지 확인되지 않았으며, 일부 문구가 영어로 나오거나 동작하지 않을 수 있습니다.
+DSH 0.2.2-rc.5 이상에 설치됩니다. 확인한 버전은 0.2.2-rc.5입니다. 이후 버전은 이 문서에 적히기 전까지 확인되지 않았으며, 일부 문구가 영어로 나오거나 동작하지 않을 수 있습니다.
 
-표시 패치는 0.2.2-rc.2에서만 실행됩니다. 다른 버전에서는 오류를 내고 멈춥니다. 0.2.2-rc.1에는 [v0.7.1](https://github.com/Burntgogi/dsh-locale-ko/tree/v0.7.1)을 쓰세요.
+표시 패치는 0.2.2-rc.5에서만 실행됩니다. 다른 버전에서는 오류를 내고 멈춥니다. 0.2.2-rc.1에는 [v0.7.1](https://github.com/Burntgogi/dsh-locale-ko/tree/v0.7.1)을 쓰세요.
 
 ### 업데이트
 

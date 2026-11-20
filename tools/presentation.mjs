@@ -168,15 +168,15 @@ function addKoreanDetails(result, read) {
     if (english === undefined) continue
     const originalDetail = JSON.parse(english).meta?.detail
     assert.ok(originalDetail === undefined || originalDetail === 'docs/DETAIL.md', pkg)
-    const hasPreview = originalDetail === 'docs/DETAIL.md'
+    const hasDetail = originalDetail === 'docs/DETAIL.md'
     assert.ok(read(pkg + '/' + (originalDetail ?? 'README.md')), pkg)
-    const detail = hasPreview ? 'docs/DETAIL.ko.md' : 'README.ko.md'
+    const detail = hasDetail ? 'docs/DETAIL.ko.md' : 'README.ko.md'
     const locale = pkg + '/locale/ko.json'
     const korean = JSON.parse(result.get(locale) ?? read(locale) ?? '{}')
     korean.meta = { ...korean.meta, detail }
     result.set(locale, JSON.stringify(korean, null, 2) + '\n')
     result.set(pkg + '/' + detail, readFileSync(new URL(name + '/' + detail.split('/').at(-1), previews), 'utf8'))
-    if (hasPreview) {
+    if (hasDetail && read(pkg + '/docs/preview.svg') !== undefined) {
       result.set(pkg + '/docs/preview.ko.svg', readFileSync(new URL(name + '/preview.ko.svg', previews), 'utf8'))
     }
   }
@@ -195,8 +195,8 @@ const providerDescriptions = {
       '무료이며 인트라넷과 로컬 주소에도 접근할 수 있습니다. JavaScript나 로그인이 필요한 페이지, PDF는 지원하지 않습니다.',
   },
   '@deepseek-ai/dsh-web-search-deepseek/lib/index.js': {
-    'Slower, and every search uses extra model tokens. Requires a DeepSeek account or API key.':
-      '느리고 검색할 때마다 모델 토큰을 추가로 씁니다. DeepSeek 계정이나 API 키가 필요합니다.',
+    'No per-search charge, but every search uses extra model tokens. Requires a DeepSeek account or API key.':
+      '검색 건별 요금은 없지만 검색할 때마다 모델 토큰이 추가로 소모됩니다. DeepSeek 계정이나 API 키가 필요합니다.',
   },
 }
 

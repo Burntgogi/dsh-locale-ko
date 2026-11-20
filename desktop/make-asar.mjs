@@ -35,9 +35,9 @@ function read(file) {
 const hash = value => createHash('sha256').update(value).digest('hex')
 const mainFile = 'lib/main.js'
 const main = read(mainFile)
-assert.equal(JSON.parse(read('package.json')).version, '0.2.2-rc.2')
-assert.equal(hash(main), 'd8a5f9bd5e1c72e59ec52c036278d7ff5605f40cf70df3dd1721f5c12cbab817',
-  'Expected the original Windows 0.2.2-rc.2 Electron entry point')
+assert.equal(JSON.parse(read('package.json')).version, '0.2.2-rc.5')
+assert.equal(hash(main), '837418111658dcc404ab991957dc3143af4c25dacf2781362a8785ee368fbb25',
+  'Expected the original Windows 0.2.2-rc.5 Electron entry point')
 
 const ko = JSON.parse(readFileSync(new URL('./ko.json', import.meta.url), 'utf8'))
 const source = main.slice(main.indexOf('const en = {\n\tcliCommandMenu:'), main.indexOf('const dictionaries = {'))
@@ -105,4 +105,4 @@ try {
 } finally {
   closeSync(fd)
 }
-console.log(`Localized RC2 archive written with ${Object.keys(ko).length} native strings in 3 shell modules and ${patches.size - 3} package resources.`)
+console.log(`Localized RC5 archive written with ${Object.keys(ko).length} native strings in 3 shell modules and ${patches.size - 3} package resources.`)
